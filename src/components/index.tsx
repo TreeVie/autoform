@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from './layout/layout'
 import Tools from './tools/index'
 import Panel,{paneltype} from './panel/panel'
+import 'css-doodle'
 
 interface PanelState{
     panel:paneltype

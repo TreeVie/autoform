@@ -1,7 +1,10 @@
 import React from "react";
 import "./index.less";
+import produce from "immer"
+import {Dispatch} from 'redux'
 
 interface ToolsProps {
+    defaultValue?:string
     tools?: ToolProps[];
 }
 interface ToolProps {
@@ -12,6 +15,7 @@ interface ToolProps {
 
 export default class Tools extends React.PureComponent<ToolsProps> {
     static defaultProps = {
+        defaultValue:"baseinput",
         tools: [
             {
                 id: "baseinput",
@@ -56,12 +60,12 @@ export default class Tools extends React.PureComponent<ToolsProps> {
         el.style.setProperty('--y', `${ y }px`)
     }
     render() {
-        const { tools } = this.props;
+        const { tools,defaultValue } = this.props;
         return (
             <ul className="tools" onClick={this.onClick} >
                 <li className="title">工具栏</li>
                 <Search />
-                {tools.map(tool => <li onMouseMove={this.onMouseMove} key={tool.id}><span>{tool.name}</span></li>)}
+                {tools.map(tool => <li className={`tool ${defaultValue===tool.id?"selected":""}`} onMouseMove={this.onMouseMove} key={tool.id}><span>{tool.name}</span></li>)}
             </ul>
         );
     }
@@ -76,3 +80,12 @@ class Search extends React.PureComponent {
         );
     }
 }
+
+// reducer
+const toolsOnChange = (state:any,action)=>produce(state,draft=>{
+    switch (action.type){
+        case "BASE_INPUT":
+            draft.type="BASE_INPUT"
+        return
+    }
+})
