@@ -4,7 +4,8 @@ import Content from './content'
 import './layout.less'
 
 interface LayoutProps{
-    mode?:"vertical"|"horizon"
+    mode?:"vertical"|"horizon",
+    className?:string
 }
 
 export default class Layout<T extends LayoutProps> extends React.Component<T>{
@@ -12,9 +13,10 @@ export default class Layout<T extends LayoutProps> extends React.Component<T>{
     static Sider;
     static Content;
     render(){
-        const {mode='vertical'} = this.props;
+        let {mode='horizon',className} = this.props;
+        className = className?`${className} `:""
         return (
-            <div className={`layout layout-${mode}`}>
+            <div className={`${className}layout layout-${mode}`}>
                 {this.props.children}
             </div>
         )

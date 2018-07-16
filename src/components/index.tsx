@@ -23,10 +23,10 @@ export default class Main extends React.PureComponent<{},PanelState>{
                 <Layout.Sider>
                     <Tools/>
                 </Layout.Sider>
-                <Layout mode="horizon">
+                <Layout mode="vertical">
                     {/* 头部信息 */}
                     <Layout.Header>AutoForm</Layout.Header>
-                    <Layout>
+                    <Layout mode="horizon" className="main">
                         {/* 内容 */}
                         <Layout.Content></Layout.Content>
                         <Layout.Sider style={{boxShadow:'none'}}>
